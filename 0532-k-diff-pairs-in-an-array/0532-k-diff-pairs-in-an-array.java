@@ -1,16 +1,21 @@
 class Solution {
     public int findPairs(int[] nums, int k) {
         HashMap<Integer,Integer> hs=new HashMap<>();
+        HashMap<Integer,Integer> hss=new HashMap<>();
         for(int i=0;i<nums.length;i++){
-            for(int j=i+1;j<nums.length;j++){
-                    if(Math.abs(nums[i]-nums[j])==k){
-                        int a=Math.min(nums[i],nums[j]);
-                        int b=Math.max(nums[i],nums[j]);
-                        hs.put(a,b);
-                    }
+            int element =nums[i]+k;
+            int el=nums[i]-k;
+            if(hs.containsKey(element)){
+                hss.put(nums[i],element);
             }
+            if(hs.containsKey(el)){
+                hss.put(el,nums[i]);
+            }
+            hs.put(nums[i],i);
+
         }
-        return hs.size();
+        return hss.size();
+       
     }
 }
 
